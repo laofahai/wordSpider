@@ -1,6 +1,6 @@
 # Word spider for programmers
 
-This simple project is built to help the programmers on English learning by crawling the words on given website such as some framework's documentation, then you can import the words to your own wordbook, I wish this can help on enrich your English vocabulary.
+This simple project is built to help the programmers on English learning by crawling the words on given website such as some framework's documentation, then you can import the words to your own wordbook to improve your vocabulary or practice the pronunciation, I wish this can help on enrich your English vocabulary.
 
 ## Requirements
 * [Proxy pool](https://github.com/jhao104/proxy_pool), so please follow the link and configure it first.
@@ -20,10 +20,10 @@ pip install -r requirements.txt
 That's all.
 
 ## Stop words
-you can define your own stop words in the `stopWords.txt`.
+You can define your own stop words in the `stopWords.txt`, actually I have already defined some of that.
 
 ## Usage
-I have already create some spiders such as for Spring guide, Vue guide documentations, and the vacabulary already exists in the `words` folder.
+I have already create some spiders such as for Spring guide, Vue guide documentations, and the vocabulary already exists in the `words` folder.
 
 if you want to crawl more, just define the spider in the `spiders` folder like this:
 
@@ -32,7 +32,7 @@ from base.spider import BasicSpider
 
 class VueGuide(BasicSpider):
 
-    # This is the list page of documentations, spider will start crowling from here.
+    # This is the list page of documentations, spider will start crawling from here.
     fromUrl = "https://vuejs.org/guide/introduction.html"
     
     # The detail pages links in the list page
@@ -45,3 +45,9 @@ class VueGuide(BasicSpider):
 ```
 
 and define the spiders in the `wordSpider.py`
+
+## Artifacts
+The `words` directory will save the words frequency for every spider, and the `words/__all.txt` is all of them. so you can import that to your learning APP like `不背单词`.
+
+
+Hope everything goes well with you.
