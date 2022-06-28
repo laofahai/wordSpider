@@ -12,7 +12,7 @@ class BasicSpider():
 
     retryCount = 5
 
-    sleepTime = 5
+    sleepTime = 1
 
     def run(self, url = None):
         if url is None:
@@ -51,9 +51,7 @@ class BasicSpider():
             text = self.getContent(bs)
             result.append(self.cleanText(text))
 
-            break
             time.sleep(self.sleepTime)
-            
             
         return " ".join(result)
 

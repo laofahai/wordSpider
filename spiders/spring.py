@@ -1,6 +1,6 @@
 from base.spider import BasicSpider
 
-class Spring(BasicSpider):
+class SpringGuide(BasicSpider):
     
     fromUrl = "https://spring.io/guides/"
     
@@ -10,7 +10,7 @@ class Spring(BasicSpider):
     def getContent(self, bs):
         return bs.select(".main-body--wrapper")[0].text
 
-class SpringBoot(BasicSpider):
+class SpringBootReference(BasicSpider):
     
     fromUrl = "https://docs.spring.io/spring-boot/docs/current/reference/html/"
     
@@ -18,4 +18,4 @@ class SpringBoot(BasicSpider):
         return bs.select('.hdlist a')
 
     def getContent(self, bs):
-        return bs.select("#doc")[0].text
+        return bs.select("#content")[0].text

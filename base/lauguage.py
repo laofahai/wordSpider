@@ -86,6 +86,7 @@ def mergeAllFile():
     files = os.listdir(wordsSaveDir)
 
     vocabulary = {}
+    StopWords = getStopWords()
 
     for fileName in files:
         if not fileName.endswith(".txt") or fileName == allWordsFile:
@@ -102,10 +103,13 @@ def mergeAllFile():
             vocabulary[tmp[0]] += int(tmp[1])
 
     file = open(wordsSaveDir + allWordsFile, "w")
+    
+    vocabulary = sorted(vocabulary.items(),  key=lambda w: w[1], reverse=True)
     for word in vocabulary:
-        times = vocabulary[word]
-        file.write(str(word))
+        if word[0] in StopWords:
+            continue
+        file.write(str(word[0]))
         file.write("\t")
-        file.write(str(times))
+        file.write(str(word[1]))
         file.write("\n")
     file.close()
