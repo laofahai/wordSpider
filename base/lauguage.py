@@ -98,6 +98,8 @@ def mergeAllFile():
 
         for line in content:
             tmp = line.split("\t")
+            if len(tmp) < 2:
+                continue
             if not vocabulary.__contains__(tmp[0]):
                 vocabulary[tmp[0]] = 0
             vocabulary[tmp[0]] += int(tmp[1])

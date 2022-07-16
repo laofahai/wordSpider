@@ -7,13 +7,21 @@ from base.lauguage import Language, mergeAllFile
 from base.spider import getSpider
 
 spiders = {
-    "vue": [
-        "VueGuide"
-    ],
-    "spring": [
-        "SpringGuide"
-    ],
-    
+    # "frontend": [
+    #     "VueGuide",
+    #     "FlutterDoc"
+    # ],
+    # "spring": [
+    #     "SpringGuide"
+    # ],
+    # "extjs": [
+    #     "ExtJSGuide"
+    # ],
+    "language": [
+        # "PHPDoc",
+        # "GolangDoc",
+        "PythonTutorial"
+    ]
 }
 
 

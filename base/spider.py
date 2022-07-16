@@ -1,11 +1,14 @@
 # coding: utf-8
 
+from sre_compile import isstring
 from bs4 import BeautifulSoup
 
 import time
 import requests
 import re
 import importlib
+import sys
+import traceback
 
 
 class BasicSpider():
@@ -20,6 +23,9 @@ class BasicSpider():
 
         rawHtml = self.fetchHtml(url)
 
+        if rawHtml is None:
+            print("failed to fetch: " + url)
+            sys.exit()
 
         bs = BeautifulSoup(rawHtml, "lxml")
         links = self.getLinksFromListPage(bs)
@@ -29,8 +35,11 @@ class BasicSpider():
         result = []
 
         for link in links:
-
-            href = link.get("href")
+            
+            if isstring(link):
+                href = link
+            else:
+                href = link.get("href")
 
             if href is None:
                 continue
@@ -86,9 +95,10 @@ class BasicSpider():
         print("Using proxy: %s, fetching: %s" % (proxy, url))
         while retry_count > 0:
             try:
+                print("proxy tring times left: %d" % retry_count)
                 response = requests.get(url, proxies={"http": "http://{}".format(proxy)})
                 return response.text
-            except Exception:
+            except Exception as e:
                 retry_count -= 1
         # 删除代理池中代理
         self.delete_proxy(proxy)
